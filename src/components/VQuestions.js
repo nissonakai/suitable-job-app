@@ -7,8 +7,7 @@ export const VQuestions = ({questions, answers, setAnswers}) => {
     let questionIndex = index - 1;
 
     const doAnswer = (answer) => {
-        const newAnswers = answers.slice();
-        newAnswers[questionIndex] = answer;
+        const newAnswers = answers.slice().map((current, i) => current + answer[i]);
         setAnswers(newAnswers);
         const path = index < questions.length 
             ? `/values/${parseInt(index, 10) + 1}` : "/personality/1";
@@ -17,8 +16,10 @@ export const VQuestions = ({questions, answers, setAnswers}) => {
 
     const buttons = [...Array(4).keys()].map(i => {
         const choiceIndex = `choice${i+1}`;
+        const answer = Array(4).fill(0);
+        answer[i] += 1;
         return (
-            <button onClick={() => doAnswer(i+1)} key={i+1}>{questions[questionIndex][choiceIndex]}</button>
+            <button onClick={() => doAnswer(answer)} key={i+1}>{questions[questionIndex][choiceIndex]}</button>
         )
     });
 

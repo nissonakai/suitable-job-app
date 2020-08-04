@@ -13,7 +13,7 @@ const App = () => {
 
   const [vQuestions, setvQuestions] = useState([]);
   const [pQuestions, setpQuestions] = useState([]);
-  const [valuesAnswers, setValuesAnswers] = useState([]);
+  const [valuesAnswers, setValuesAnswers] = useState(Array(4).fill(0));
   const [personalityAnswers, setPersonalityAnswers] = useState(Array(6).fill(0));
 
   useEffect(() => {
@@ -22,7 +22,6 @@ const App = () => {
         .then(r => {
           const datas = r.data.data;
           setvQuestions(datas);
-          console.log(vQuestions);
         }).catch(err => {
           console.log(err);
         });
@@ -33,7 +32,6 @@ const App = () => {
         .then(r => {
           const datas = r.data.data;
           setpQuestions(datas);
-          console.log(pQuestions);
         }).catch(err => {
           console.log(err);
         });
@@ -42,7 +40,9 @@ const App = () => {
     getvQuestions();
     getpQuestions();
 
-  }, [vQuestions, pQuestions]);
+  }, []);
+
+  console.log(valuesAnswers);
 
   return (
     <div className="App">
