@@ -9,38 +9,61 @@ import axios from "axios";
 axios.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
 
 
-function App() {
+const App = () => {
 
-  const [questions, setQuestions] = useState([]);
-
-  const getQuestions = () => {
-    axios.get(process.env.REACT_APP_SJC_QUESTIONS + "/1")
-      .then(r => {
-        const datas = r.data.data;
-        setQuestions(datas);
-      }).catch(err => {
-        console.log(err);
-      });
-  };
+  const [vQuestions, setvQuestions] = useState([]);
+  const [pQuestions, setpQuestions] = useState([]);
+  const [valuesAnswers, setValuesAnswers] = useState([]);
+  const [personalityAnswers, setPersonalityAnswers] = useState(Array(6).fill(0));
 
   useEffect(() => {
-    getQuestions();
-  }, [setQuestions]);
+    const getvQuestions = () => {
+      axios.get(process.env.REACT_APP_SJC_VQUESTIONS)
+        .then(r => {
+          const datas = r.data.data;
+          setvQuestions(datas);
+          console.log(vQuestions);
+        }).catch(err => {
+          console.log(err);
+        });
+    };
+  
+    const getpQuestions = () => {
+      axios.get(process.env.REACT_APP_SJC_PQUESTIONS)
+        .then(r => {
+          const datas = r.data.data;
+          setpQuestions(datas);
+          console.log(pQuestions);
+        }).catch(err => {
+          console.log(err);
+        });
+    };
+
+    getvQuestions();
+    getpQuestions();
+
+  }, [vQuestions, pQuestions]);
 
   return (
     <div className="App">
       <Router>
         <Switch>
           <Route path="/" exact>
-            <Start
-             questions={questions}
-              />
-          </Route>
-          <Route path="/personality/:index">
-            <PQuestions />
+            <Start />
           </Route>
           <Route path="/values/:index">
-            <VQuestions />
+            <VQuestions 
+              questions={vQuestions}
+              answers={valuesAnswers}
+              setAnswers={setValuesAnswers}
+            />
+          </Route>
+          <Route path="/personality/:index">
+            <PQuestions 
+              questions={pQuestions}
+              answers={personalityAnswers}
+              setAnswers={setPersonalityAnswers}
+            />
           </Route>
           <Route>
             <NotFound />
