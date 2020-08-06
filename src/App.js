@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Start } from "./components/Start";
-import { PQuestions } from "./components/PQuestions";
-import { VQuestions } from "./components/VQuestions";
+import { SectionTop } from "./components/SectionTop";
+import { Board } from "./components/Board";
+import { Result } from "./components/Result";
 import { NotFound } from "./components/NotFound";
 import axios from "axios";
 
@@ -42,7 +43,6 @@ const App = () => {
 
   }, []);
 
-  console.log(valuesAnswers);
 
   return (
     <div className="App">
@@ -51,18 +51,36 @@ const App = () => {
           <Route path="/" exact>
             <Start />
           </Route>
+          <Route path="/values/top">
+            <SectionTop
+              type="values"
+            />
+          </Route>
           <Route path="/values/:index">
-            <VQuestions 
+            <Board 
               questions={vQuestions}
               answers={valuesAnswers}
               setAnswers={setValuesAnswers}
+              type="values"
+            />
+          </Route>
+          <Route path="/personality/top">
+            <SectionTop
+              type="personality"
             />
           </Route>
           <Route path="/personality/:index">
-            <PQuestions 
+            <Board 
               questions={pQuestions}
               answers={personalityAnswers}
               setAnswers={setPersonalityAnswers}
+              type="personality"
+            />
+          </Route>
+          <Route path="/result">
+            <Result
+              setPersonalityAnswers={setPersonalityAnswers}
+              setValuesAnswers={setValuesAnswers}
             />
           </Route>
           <Route>

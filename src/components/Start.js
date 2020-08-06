@@ -1,12 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 export const Start = () => {
+    const history = useHistory();
     return (
         <div>
             <h1>適職診断テスト</h1>
-            <button>
-                <Link to="/values/1">始める</Link>  
+            <button onClick={() => history.push("/values/top")}>
+                始める 
             </button>
         </div>
     )
