@@ -1,17 +1,18 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import Constants from "../Constants";
 
 export const SectionTop = ({type}) => {
+    const { sectionTexts } = Constants;
     const history = useHistory();
-    const name = type === "values" ? "価値観" : "性格";
-    const jump_test = () => {
-        history.push(`/${type}/1`);
-    };
+    
+    const texts = type === "values" ? sectionTexts["values"] : sectionTexts["personality"];
+    const test_start = () => history.push(`/${type}/1`);
     return (
         <>
-            <h1>{name}診断テスト</h1>
-            <p>説明説明説明説明説明説明説明説明説明説明説明</p>
-            <button onClick={() => jump_test()}>始める</button>
+            <h1>{texts.name}診断テスト</h1>
+            <p>{texts.body}</p>
+            <button onClick={() => test_start()}>始める</button>
         </>
     )
 };

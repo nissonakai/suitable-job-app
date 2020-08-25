@@ -14,8 +14,8 @@ const App = () => {
 
   const [vQuestions, setvQuestions] = useState([]);
   const [pQuestions, setpQuestions] = useState([]);
-  const [valuesAnswers, setValuesAnswers] = useState(Array(4).fill(0));
-  const [personalityAnswers, setPersonalityAnswers] = useState(Array(6).fill(0));
+  const [vAnswers, setvAnswers] = useState(Array(4).fill(0));
+  const [pAnswers, setpAnswers] = useState(Array(6).fill(0));
 
   useEffect(() => {
     const getvQuestions = () => {
@@ -44,6 +44,21 @@ const App = () => {
   }, []);
 
 
+  const maxIndexs = arr => {
+    const max = arr.reduce((a, b) => Math.max(a, b));
+    let targetArr = [];
+    arr.forEach((a, index) => {
+      if(a === max) {
+        targetArr.push(index);
+      };
+    });
+    return targetArr;
+  };
+
+  const valuesMax = maxIndexs(vAnswers);
+  const personalityMax = maxIndexs(pAnswers);
+
+
   return (
     <div className="App">
       <Router>
@@ -59,8 +74,8 @@ const App = () => {
           <Route path="/values/:index">
             <Board 
               questions={vQuestions}
-              answers={valuesAnswers}
-              setAnswers={setValuesAnswers}
+              answers={vAnswers}
+              setAnswers={setvAnswers}
               type="values"
             />
           </Route>
@@ -72,15 +87,17 @@ const App = () => {
           <Route path="/personality/:index">
             <Board 
               questions={pQuestions}
-              answers={personalityAnswers}
-              setAnswers={setPersonalityAnswers}
+              answers={pAnswers}
+              setAnswers={setpAnswers}
               type="personality"
             />
           </Route>
           <Route path="/result">
             <Result
-              setPersonalityAnswers={setPersonalityAnswers}
-              setValuesAnswers={setValuesAnswers}
+              valuesMax={valuesMax}
+              personalityMax={personalityMax}
+              setpAnswers={setpAnswers}
+              setvAnswers={setvAnswers}
             />
           </Route>
           <Route>
