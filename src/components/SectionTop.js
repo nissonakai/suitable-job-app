@@ -2,7 +2,7 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import Constants from "../Constants";
 
-export const SectionTop = ({type}) => {
+const SectionTop = ({type}) => {
     const { sectionTexts } = Constants;
     const history = useHistory();
     
@@ -16,3 +16,5 @@ export const SectionTop = ({type}) => {
         </>
     )
 };
+
+export default SectionTop;

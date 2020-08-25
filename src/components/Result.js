@@ -1,7 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 
-export const Result = ({valuesMax, personalityMax, setpAnswers, setvAnswers}) => {
+const Result = ({valuesMax, personalityMax, setpAnswers, setvAnswers}) => {
     const history = useHistory();
     const backTop = () => {
         setpAnswers(Array(6).fill(0));
@@ -21,3 +21,5 @@ export const Result = ({valuesMax, personalityMax, setpAnswers, setvAnswers}) =>
         </>
         );
 };
+
+export default Result;

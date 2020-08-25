@@ -2,7 +2,7 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 
 
-export const NotFound = () => {
+const NotFound = () => {
     const history = useHistory();
 
     setTimeout(() => {
@@ -16,3 +16,5 @@ export const NotFound = () => {
         </>
     );
 };
+
+export default NotFound;

@@ -38,3 +38,5 @@ export const Board = ({questions, answers, setAnswers, type}) => {
         </>
     );
 };
+
+export default Board;
