@@ -7,7 +7,7 @@ const SectionTop = ({type}) => {
     const history = useHistory();
     
     const texts = type === "values" ? sectionTexts["values"] : sectionTexts["personality"];
-    const test_start = () => history.push(`/${type}/1`);
+    const test_start = () => history.push(`/${type}/questions/1`);
     return (
         <>
             <h1>{texts.name}診断テスト</h1>

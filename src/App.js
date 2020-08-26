@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import Start from "./components/Start";
 import SectionTop from "./components/SectionTop";
 import Board from "./components/Board";
 import Result from "./components/Result";
-import NotFound from "./components/NotFound";
 import axios from "axios";
 
 axios.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
@@ -62,7 +61,7 @@ const App = () => {
     { path: "/", Component: Start },
     { path: "/values/top", Component: SectionTop, atrributes: { type: "values" } },
     {
-      path: "/values/:index", Component: Board, atrributes: {
+      path: "/values/questions/:index", Component: Board, atrributes: {
         questions: vQuestions,
         answers: vAnswers,
         setAnswers: setvAnswers,
@@ -71,7 +70,7 @@ const App = () => {
     },
     { path: "/personality/top", Component: SectionTop, atrributes: { type: "personality" } },
     {
-      path: "/personality/:index", Component: Board, atrributes: {
+      path: "/personality/questions/:index", Component: Board, atrributes: {
         questions: pQuestions,
         answers: pAnswers,
         setAnswers: setpAnswers,
@@ -83,36 +82,33 @@ const App = () => {
         valuesMax: valuesMax,
         personalityMax: personalityMax,
         setpAnswers: setpAnswers,
-        setvAnswers: setvAnswers
+        setvAnswers: setvAnswers,
       }
     },
-    { path: "", Component: NotFound }
   ];
 
   return (
     <div className="page">
-      <Router>
+      <BrowserRouter>
         <div className="page__container">
-          <Switch>
-            {ROUTES.map(({ path, Component, atrributes }) => (
-              <Route key={path} path={path} exact>
-                {({ match }) => (
-                  <CSSTransition
-                    in={match != null}
-                    timeout={300}
-                    classNames="page__item-"
-                    unmountOnExit
-                  >
-                    <div className="page__item">
-                      <Component {...atrributes} />
-                    </div>
-                  </CSSTransition>
-                )}
-              </Route>
-            ))}
-          </Switch>
+          {ROUTES.map(({ path, Component, atrributes }) => (
+            <Route key={path} path={path} exact>
+              {({ match }) => (
+                <CSSTransition
+                  in={match != null}
+                  timeout={550}
+                  classNames="page__item-"
+                  unmountOnExit
+                >
+                  <div className="page__item">
+                    <Component {...atrributes} />
+                  </div>
+                </CSSTransition>
+              )}
+            </Route>
+          ))}
         </div>
-      </Router>
+      </BrowserRouter>
     </div>
   );
 }
