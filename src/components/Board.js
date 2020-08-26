@@ -6,22 +6,22 @@ const FLIP_STYLE = {
     // 前面⇒背面
     entering: {
       transition: 'all .5s ease',
-      transform: 'perspective(25rem) rotateX(-360deg)'
+      transform: 'perspective(25rem) rotateY(-360deg)'
     },
     // 背面
     entered: {
       transition: '',
-      transform: 'perspective(25rem) rotateX(0deg)'
+      transform: 'perspective(25rem) rotateY(0deg)'
     },
     // 背面⇒前面
     exiting: {
       transition: 'all .5s ease',
-      transform: 'perspective(25rem) rotateX(-360deg)'
+      transform: 'perspective(25rem) rotateY(-360deg)'
     },
     // 前面
     exited: {
       transition: '',
-      transform: 'perspective(25rem) rotateX(0)'
+      transform: 'perspective(25rem) rotateY(0)'
     }
   };
 
