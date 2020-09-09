@@ -12,7 +12,12 @@ const SectionTop = ({type}) => {
         <>
             <h1>{texts.name}診断テスト</h1>
             <p>{texts.body}</p>
-            <button onClick={() => test_start()}>始める</button>
+            <p 
+                onClick={() => test_start()}
+                className="btn"
+            >
+                始める
+            </p>
         </>
     )
 };

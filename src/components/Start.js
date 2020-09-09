@@ -5,10 +5,19 @@ const Start = () => {
     const history = useHistory();
     return (
         <div>
-            <h1>適職診断テスト</h1>
-            <button onClick={() => history.push("/values/top")}>
+            <h1>
+                <img 
+                    src={`${process.env.PUBLIC_URL}/logo.png`}
+                    alt="ロゴ"
+                    className="top-logo"
+                />
+            </h1>
+            <p 
+                className="btn"
+                onClick={() => history.push("/values/top")}
+            >
                 始める 
-            </button>
+            </p>
         </div>
     )
 };

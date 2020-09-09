@@ -16,8 +16,11 @@ const Result = ({valuesMax, personalityMax, setpAnswers, setvAnswers}) => {
         <>
             <h1>診断結果</h1>
             <p>価値観診断テスト結果：{valuesMaxTitle}タイプ</p>
-            <p>価値観診断テスト結果：{personalityMaxTitle}タイプ</p>
-            <button onClick={() => backTop()}>トップへ</button>
+            <p>性格診断テスト結果：{personalityMaxTitle}タイプ</p>
+            <p 
+                onClick={() => backTop()}
+                className="btn"
+            >トップへ</p>
         </>
         );
 };

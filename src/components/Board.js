@@ -48,7 +48,12 @@ export const Board = ({questions, answers, setAnswers, type}) => {
         const pAnswer = questions[questionIndex][`count${i === 0 ? 'A' : 'B'}`].split("").map(n => parseInt(n, 10));
         const answer = type === "values" ? vAnswer : pAnswer;
         return (
-            <button onClick={() => doAnswer(answer)} key={i}>{questions[questionIndex][`choice${i+1}`]}</button>
+            <p 
+                onClick={() => doAnswer(answer)} key={i}
+                className="btn"
+            >
+                {questions[questionIndex][`choice${i+1}`]}
+            </p>
         )
     });
 

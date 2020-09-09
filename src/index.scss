@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #bbded8;
 }
 
 code {
@@ -15,6 +16,30 @@ code {
 #root {
   margin: 0 auto;
   text-align: center;
+}
+
+.top-logo {
+  margin: 0 auto;
+  max-width: 90%;
+}
+
+.btn {
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  padding: 1em 2em;
+  text-decoration: none;
+  color: #FFF;
+  background: #35a3fd;/*背景色*/
+  border-bottom: solid 2px #1a74be;/*少し濃い目の色に*/
+  border-radius: 8px;/*角の丸み*/
+  box-shadow: inset 0 2px 0 rgba(255,255,255,0.2), 0 2px 2px rgba(0, 0, 0, 0.19);
+  font-weight: bold;
+}
+
+.btn:active {
+  border-bottom: solid 2px #fd9535;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.30);
 }
 
 @import './routeTransition.scss';
